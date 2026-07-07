@@ -1,0 +1,78 @@
+#include <iostream>
+#include <iomanip>
+void showBalance(double balance);
+double deposit ();
+double withdraw(double balance);
+
+
+int main()
+{ 
+    double balance = 0;
+    int choice = 0;
+
+
+do {
+std::cout << "enter your choice: \n";
+std::cout << "1. show balance : \n";
+std::cout << "2.deposit money : \n";
+std::cout << "3.withdraw money : \n";
+std::cout << "4.exit : \n";
+std::cin >> choice;
+
+std::cin.clear();
+fflush(stdin);
+
+switch (choice)
+{
+    case 1:
+        showBalance(balance);
+        break;
+    case 2:
+        balance += deposit();
+        break;
+    case 3:
+        balance -= withdraw(balance);
+        break;
+    case 4:
+        std::cout << "thanks for using our service!\n";
+        break;
+    default:
+        std::cout << "invalid choice!\n";
+}
+}while(choice != 4);
+ return 0;
+}
+void showBalance(double balance){
+    std::cout << "your balance is: " << std::setprecision(2) << std::fixed << balance << "\n";
+}
+double deposit (){
+
+double amount = 0;
+    std::cout << "enter the amount to deposit: ";
+    std::cin >> amount;
+    if(amount > 0){
+        return amount;
+    }
+    else{
+        std::cout << "That's not a valid amount:\n";
+        return 0;
+    }
+}
+
+double withdraw(double balance)
+{
+    double amount = 0;
+    std::cout << "enter the amount to withdraw: ";
+    std::cin >> amount;
+     if(amount > balance){
+        std::cout << "insufficient funds\n";
+        return 0;
+    }
+    else if(amount < 0){
+        std::cout << "That's not a valid amount\n";
+        return 0;
+    }
+    else{
+        return amount;
+    }
+}
